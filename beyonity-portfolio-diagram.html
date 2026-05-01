@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Israr Sadaq | Network & IT Admin | AWS Beyonity Project</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #0A0C10 0%, #0F1117 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #E5E9F0;
+      padding: 2rem;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Header / Profile Card */
+    .profile-card {
+      background: rgba(22, 27, 34, 0.65);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      border: 1px solid rgba(88, 166, 255, 0.25);
+      padding: 2rem 2rem 1.8rem 2rem;
+      margin-bottom: 2rem;
+      transition: all 0.2s;
+    }
+
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .badge {
+      background: #1F2A3E;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      border-left: 3px solid #58A6FF;
+    }
+
+    .name {
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #FFFFFF 0%, #7EE787 50%, #58A6FF 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .title {
+      font-size: 1.2rem;
+      color: #7EE787;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #8B949E;
+    }
+
+    .contact-links a {
+      color: #58A6FF;
+      text-decoration: none;
+      border-bottom: 1px dotted #3B82F6;
+    }
+
+    /* Section titles */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem 0;
+      border-left: 4px solid #7EE787;
+      padding-left: 1rem;
+      letter-spacing: -0.3px;
+    }
+
+    /* Cards Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.6rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem;
+    }
+
+    .card {
+      background: #111317;
+      border-radius: 1.5rem;
+      border: 1px solid #242933;
+      padding: 1.4rem 1.6rem;
+      transition: 0.2s;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .card:hover {
+      border-color: #58A6FF;
+      transform: translateY(-3px);
+    }
+
+    .card-header {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #7EE787;
+      border-bottom: 1px solid #242933;
+      padding-bottom: 0.6rem;
+    }
+
+    /* Architecture flow */
+    .arch-flow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 1.2rem 0;
+    }
+
+    .arch-node {
+      flex: 1;
+      background: #0D1117;
+      border-radius: 1.2rem;
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid #2C313A;
+      font-weight: 500;
+    }
+
+    .arch-arrow {
+      font-size: 1.8rem;
+      color: #58A6FF;
+    }
+
+    /* Folder tree - monospace */
+    .tree {
+      font-family: 'SF Mono', 'Courier New', monospace;
+      font-size: 0.75rem;
+      background: #0A0C10;
+      padding: 1rem;
+      border-radius: 1rem;
+      overflow-x: auto;
+      white-space: pre;
+      color: #B9C3D0;
+    }
+
+    .folder {
+      color: #7EE787;
+    }
+
+    .policy-json {
+      background: #0D1117;
+      padding: 0.75rem;
+      border-radius: 1rem;
+      font-family: monospace;
+      font-size: 0.7rem;
+      color: #C9D1D9;
+      border: 1px solid #2C313A;
+      margin-top: 0.8rem;
+      max-height: 200px;
+      overflow: auto;
+    }
+
+    hr {
+      border-color: #242933;
+      margin: 1.2rem 0;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.75rem;
+      color: #5A6577;
+      border-top: 1px solid #242933;
+      padding-top: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .arch-flow { flex-direction: column; }
+      .arch-arrow { transform: rotate(90deg); }
+      body { padding: 1rem; }
+      .name { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- PROFESSIONAL INTRODUCTION + CCNA / CCNP -->
+  <div class="profile-card">
+    <div class="badge-group">
+      <span class="badge">CCNA certified</span>
+      <span class="badge">CCNP certified</span>
+      <span class="badge">Master – Information & Comm. Engineering</span>
+      <span class="badge">Network & IT Administrator</span>
+    </div>
+    <div class="name">Israr Sadaq</div>
+    <div class="title">Network & IT Administrator | Optical Networks | AWS Cloud | Automation</div>
+    <div class="contact-links">
+      <span>📧 israrsadaq057@gmail.com</span>
+      <span>🐙 <a href="#">github.com/israrsadaq057-art</a></span>
+      <span>📱 +49 15215267799</span>
+    </div>
+    <hr>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;">
+      <div><strong>✔ Optical telemetry (Nokia OLT/ONT)</strong></div>
+      <div><strong>✔ Enterprise firewalls + IDS/IPS</strong></div>
+      <div><strong>✔ AWS (S3, IAM, EC2, CloudWatch)</strong></div>
+      <div><strong>✔ Python / PowerShell automation</strong></div>
+      <div><strong>✔ Grafana + Prometheus monitoring</strong></div>
+    </div>
+  </div>
+
+  <!-- SECTION: AWS BEYONITY PROJECT (core) -->
+  <div class="section-title">☁️ AWS Project – Beyonity (20 artists studio)</div>
+  <div class="grid-2">
+    <!-- left col -->
+    <div>
+      <div class="card">
+        <div class="card-header">📦 S3 + IAM production infrastructure</div>
+        <div><strong>5 S3 buckets</strong> | <strong>7 IAM groups</strong> | <strong>7 IAM policies</strong> | <strong>21 IAM users</strong></div>
+        <div style="margin: 0.8rem 0 0.6rem 0;">🎨 Artist folders: anna, ben, carla, david, elena, felix, grace, henry, irena, jonas, karla, lukas, mona, niklas, olivia, paul → <strong>16 artists</strong></div>
+        <div class="arch-flow">
+          <div class="arch-node">🚀 Artists upload<br>3D models / textures</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node">🔐 IAM groups + policies<br>(least privilege)</div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node">📊 CloudWatch<br>+ SNS alerts</div>
+        </div>
+        <div class="tree">
+📁 beyonity-3d-assets-prod/
+├── artists/ (active/ models/ textures/ renders/ | wip/ | archive/)
+├── projects/ (Apex, Nexus, Omega, Virtua → Team-Shared / Team-Lead-Only)
+├── shared/ (textures, models, hdri, plugins)
+├── directors-cut/
+└── it-admin/
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1.2rem;">
+        <div class="card-header">⚙️ Features enabled & lifecycle rules</div>
+        <div>✅ Versioning | ✅ Transfer acceleration | ✅ HTTPS policy (DenyHTTP) | ✅ Public access block</div>
+        <div>🗑️ <strong>Lifecycle rules:</strong> wip/ → delete 14d | archive/ → Glacier 30d | client_shares/ → 7d | temp/ → 1d</div>
+        <div class="policy-json">
+{
+  "Rules": [
+    {"ID": "DeleteWIPAfter14Days", "Prefix": "wip/", "Expiration": {"Days": 14}},
+    {"ID": "ArchiveAfter30Days", "Prefix": "archive/", "Transitions": [{"Days": 30, "StorageClass": "GLACIER"}]}
+  ]
+}
+        </div>
+      </div>
+    </div>
+
+    <!-- right col -->
+    <div>
+      <div class="card">
+        <div class="card-header">👥 IAM Groups & Policies (7 each)</div>
+        <div><strong>IT-Admins</strong> → IT-Admin-Policy (full S3, IAM, EC2, CloudWatch)</div>
+        <div><strong>Senior-Artists</strong> → team projects + EC2 describe/start/stop</div>
+        <div><strong>Junior-Artists</strong> → own folder + shared read</div>
+        <div><strong>Art-Directors</strong> → read all, write only to directors-cut</div>
+        <div><strong>CTO-Executives</strong> → read S3, CloudWatch, Cost Explorer</div>
+        <div><strong>Finance</strong> → billing + cost reports</div>
+        <div><strong>HR-Manager</strong> → list IAM users</div>
+        <div style="margin-top: 12px;"><strong>✅ 9/9 permission tests passed</strong> (access control fully verified)</div>
+      </div>
+
+      <div class="card" style="margin-top: 1.2rem;">
+        <div class="card-header">📈 CloudWatch + SNS monitoring</div>
+        <div>🔔 <strong>3 alarms</strong> – bucket size (>3TB) , high request rate (>1000/h) , high error rate (>10/h)</div>
+        <div>📧 SNS email alerts → israrsadaq057@gmail.com</div>
+        <div>📊 dashboard: BucketSizeBytes, NumberOfObjects, AllRequests, 4xx/5xx errors.</div>
+        <div class="policy-json">
+{
+  "AlarmName": "Beyonity-Production-Bucket-Size-Alarm",
+  "Threshold": 3298534883328,
+  "ComparisonOperator": "GreaterThanThreshold"
+}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OTHER REAL PROJECTS (SUSTAINET + FIREWALL) -->
+  <div class="section-title">🔧 Other key projects – end‑to‑end infrastructure</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-header">📡 SUSTAINET – OLT telemetry (Fraunhofer HHI)</div>
+      <div>✔ Python while‑loop every 10s → Nokia OLT (ONT 1/1/6/4/1,2,3)</div>
+      <div>✔ Rx/Tx power, temperature, FEC corrected bytes, traffic blocks.</div>
+      <div>✔ InfluxDB + Grafana (Docker) real‑time dashboard.</div>
+      <div>✔ 20+ artists simulated traffic, transmit blocks increased from 1933 → 2006+.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">🔥 Enterprise firewall (500+ users)</div>
+      <div>✔ 5 isolated VLANs (Academic, Admin, Research, Guest, DMZ)</div>
+      <div>✔ iptables stateful rules, default‑deny, SNAT/DNAT, CARP HA failover.</div>
+      <div>✔ OpenVPN + Snort IDS/IPS (port scan & brute force detection).</div>
+      <div>✔ Prometheus + Grafana monitoring (CPU, mem, traffic, packet drops).</div>
+      <div>📄 17KB professional documentation (GitHub).</div>
+    </div>
+    <div class="card">
+      <div class="card-header">🏢 Windows AD & IT administration</div>
+      <div>✔ Domain controller (AD DS, DNS, DHCP) with OU hierarchy and security groups.</div>
+      <div>✔ PowerShell automation (user creation, audit, system health).</div>
+      <div>✔ Network diagnostics, printer troubleshooting, runbooks/SOPs.</div>
+      <div>✔ Git / GitHub (version control, CI/CD basics).</div>
+    </div>
+  </div>
+
+  <!-- WHY I AM A STRONG CANDIDATE + GITHUB -->
+  <div class="grid-2" style="margin-top: 0.5rem;">
+    <div class="card">
+      <div class="card-header">🎯 why I am a strong candidate</div>
+      <ul style="margin-left: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem;">
+        <li>✅ Hands‑on production projects – not only theory</li>
+        <li>✅ Security‑first mindset (default deny, least privilege, DMZ)</li>
+        <li>✅ Automation & Infrastructure as Code (Python, PowerShell, Terraform)</li>
+        <li>✅ Professional documentation – GitHub, README, diagrams, runbooks</li>
+        <li>✅ Fast learner (Prometheus, Grafana, OLT telemetry, AWS in weeks)</li>
+        <li>✅ CCNA + CCNP certified + Master in Communication Engineering</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">📌 GitHub portfolio – real code & diagrams</div>
+      <div>🔗 <a href="#" style="color:#7EE787;">github.com/israrsadaq057-art</a></div>
+      <div>📁 <strong>Beyonity AWS project</strong> – IAM policies, S3 folder automation, CloudWatch, test scripts.</div>
+      <div>📁 <strong>Enterprise firewall project</strong> – iptables rules, VLANS, HA, IDS/IPS config.</div>
+      <div>📁 <strong>SUSTAINET telemetry</strong> – Python, InfluxDB, Grafana dashboards.</div>
+      <div>📸 <strong>Screenshots</strong> – AWS console, monitoring graphs, test results included.</div>
+      <div style="margin-top: 12px;">⭐ Every repository contains README, architecture diagram, and deployment steps.</div>
+    </div>
+  </div>
+
+  <!-- MONITORING & AVAILABILITY -->
+  <div class="grid-2" style="margin-top: 0rem;">
+    <div class="card">
+      <div class="card-header">📊 monitoring & operations</div>
+      <div>✔ Prometheus + Grafana (firewall, host, S3 metrics)</div>
+      <div>✔ CloudWatch + SNS (email alerts for errors / capacity)</div>
+      <div>✔ Daily health check scripts (PowerShell, AWS CLI)</div>
+      <div>✔ On‑call ready, systematic troubleshooting, runbooks.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">🗂️ soft skills & availability</div>
+      <div>✔ Autonomous & team‑oriented (small/large teams).</div>
+      <div>✔ Clear documentation & knowledge transfer.</div>
+      <div>✔ Available for on‑site / hybrid, immediate start.</div>
+      <div>✔ Fluent in English – technical writing / presentation.</div>
+    </div>
+  </div>
+
+  <!-- FOOTER with certifications and final note -->
+  <div class="footer">
+    Israr Sadaq – Network & IT Administrator | CCNA | CCNP | Master in Information and Communication Engineering<br>
+    📧 israrsadaq057@gmail.com | 📱 +49 15215267799 | 🐙 github.com/israrsadaq057-art<br>
+    ✨ Every component: S3, IAM, CloudWatch, firewall, OLT telemetry – designed, deployed, documented. ✨
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+﻿{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": ["s3:ListBucket", "s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
+            "Resource": [
+                "arn:aws:s3:::beyonity-3d-assets-prod-945504685795",
+                "arn:aws:s3:::beyonity-3d-assets-prod-945504685795/artists/${aws:username}/*",
+                "arn:aws:s3:::beyonity-3d-assets-prod-945504685795/shared/*"
+            ]
+        }
+    ]
+}
